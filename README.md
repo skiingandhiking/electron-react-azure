@@ -12,22 +12,22 @@ This will install all the necessary dependencies.  There are many options for ru
 
 To run the application in the Electron shell, perform the following steps:
 
-i. From the project root directory, cd to the "app" folder
-
+1. From the project root directory, cd to the "app" folder
+```
 cd app
-
-ii. Run the following command:
-
+```
+2. Run the following command:
+```
 npm run build
-
-iii. cd to the project root folder and run the following command
-
+```
+3. cd to the project root folder and run the following command
+```
 npm start
-
+```
 The Electron application will now start running with the latest React code.
 
 To run just the React application in a browser, cd in to the app folder and run the following command:
-
+```
 npm start
-
+```
 
