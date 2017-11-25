@@ -1,0 +1,59 @@
+{
+    "name": "azure-usage-app",
+    "version": "0.1.0",
+    "description": "Keep an eye on your Azure usage, real time",
+    "author": {
+        "name": "Deane Smith"
+    },
+    "private": true,
+    "license": "MIT",
+    "bin": {
+        "electron": "./node_modules/.bin/electron"
+    },
+    "devDependencies": {
+        "electron-packager": "^8.5.2",
+        "electron-builder": "^15.1.1",
+        "electron": "^1.7.9"
+    },
+    "build": {
+        "appId": "com.example.starter",
+        "directories": {
+            "buildResources": "build",
+            "output": "dist",
+            "app": "app"
+        },
+        "dmg": {
+            "icon": "app/build/icons/favicon.icns",
+            "contents": [{
+                    "x": 110,
+                    "y": 150
+                },
+                {
+                    "x": 240,
+                    "y": 150,
+                    "type": "link",
+                    "path": "/Applications"
+                }
+            ]
+        },
+        "linux": {
+            "target": [
+                "AppImage",
+                "deb"
+            ]
+        },
+        "win": {
+            "target": "nsis"
+        }
+    },
+    "scripts": {
+        "start": "electron ./app/build/main.js",
+        "package-linux": "dist-linux --dir",
+        "dist-linux": "build -l --x64 --ia32",
+        "dist-windows": "build -w --x64 --ia32",
+        "package-windows": "dist-windows --dir",
+        "dist-macos": "build -m --x64 --ia32",
+        "package-macos": "dist-macos --dir",
+        "postinstall": "install-app-deps"
+    }
+}

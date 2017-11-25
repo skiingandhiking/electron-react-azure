@@ -1,0 +1,14 @@
+
+.resources-div-table {
+    display: table;
+    padding-bottom: 20px;
+}
+
+.resources-div-table-row {
+    display: table-row;
+}
+
+.resources-div-table-cell {
+    display: table-cell;
+    padding: 0px 20px 0px 0px;
+}

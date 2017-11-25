@@ -1,0 +1,28 @@
+{
+  "name": "azure-usage-app",
+  "description": "Keep an eye on your Azure bill - real time",
+  "author": "Deane Smith",
+  "version": "0.1.0",
+  "private": true,
+  "main": "build/main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "bootstrap": "^3.3.7",
+    "react": "^16.1.1",
+    "react-bootstrap": "^0.31.5",
+    "react-date-picker": "^6.3.1",
+    "react-dom": "^16.1.1",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  }
+}
