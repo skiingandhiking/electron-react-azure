@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Login from './Login';
 import { Provider } from 'react-redux';
 
-it('App renders without crashing', () => {
+it('Login renders without crashing', () => {
     const div = document.createElement('div');
 
     let mockState = {
-        login: {token : null}
+        login: {
+            loginError : null,
+            loginErrorMessage: null
+        }
     };
 
     let mockStore = {
@@ -18,7 +21,7 @@ it('App renders without crashing', () => {
 
     ReactDOM.render(
         <Provider store={mockStore}>
-          <App />
+            <Login />
         </Provider>, div);
 });
 

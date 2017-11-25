@@ -1,7 +1,7 @@
 {
-    "name": "azure-usage-app",
+    "name": "electron-react-azure",
     "version": "0.1.0",
-    "description": "Keep an eye on your Azure usage, real time",
+    "description": "View and manage ARM-based Azure Virtual Machines",
     "author": {
         "name": "Deane Smith"
     },
