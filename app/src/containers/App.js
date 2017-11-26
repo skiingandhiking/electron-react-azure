@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { HashRouter, Switch } from 'react-router-dom';
 import PrivateRoute from '../components/PrivateRoute';
 import LoginRoute from '../components/LoginRoute';
-import Login from '../containers/Login';
+import Login from '../components/Login';
 import VirtualMachines from './VirtualMachines';
 
 import 'bootstrap/dist/css/bootstrap.css';

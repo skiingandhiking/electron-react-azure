@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
+import { FormGroup, FormControl, Button } from 'react-bootstrap';
 import { login } from '../actions/loginActions';
 
 class Login extends React.Component {
@@ -36,8 +36,19 @@ class Login extends React.Component {
         let { tenantId, clientId, clientSecret } = this.state;
         return (
             <div>
+                <div>
+                    <strong>Azure Restful API Credentials</strong>
+                    <p>
+                        To successfully connect to the Azure Restful API you must first
+                        create an "App Registration" in the Azure portal.
+                        Click <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications"
+                           target="_blank"
+                           rel="noopener noreferrer">here</a> for more information.
+
+                    </p>
+                </div>
                 <form id="loginForm" name="loginForm" className="login-form">
-                    <ControlLabel><strong>Directory ID</strong></ControlLabel>
+                    <div>Azure Active Directory ID</div>
                     <div className="login-error">{this.props.loginError ? this.props.loginErrorMessage: ""}</div>
                     <FormGroup controlId="azureDirectoryId">
                         <FormControl
@@ -48,7 +59,7 @@ class Login extends React.Component {
                             onChange={ this.onChange }/>
                         <FormControl.Feedback />
                     </FormGroup>
-                    <ControlLabel><strong>Application ID</strong></ControlLabel>
+                    <div>Azure Active Directory Application ID</div>
                     <FormGroup controlId="azureApplicationID">
                         <FormControl
                             type="text"
@@ -58,7 +69,7 @@ class Login extends React.Component {
                             onChange={ this.onChange }/>
                         <FormControl.Feedback />
                     </FormGroup>
-                    <ControlLabel><strong>Client Key Value</strong></ControlLabel>
+                    <div>Azure Active Directory Application Client Key</div>
                     <FormGroup controlId="azureClientKey">
                         <FormControl
                             type="text"
