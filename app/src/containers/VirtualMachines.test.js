@@ -6,7 +6,8 @@ import VirtualMachines from './VirtualMachines';
 it('VirtualMachines renders without crashing', () => {
     let mockStore = {
         dispatch: () => {},
-        subscribe: () => {}
+        subscribe: () => {},
+        getState: () => {}
     };
 
     shallow(<Provider store={mockStore}>

@@ -28,8 +28,8 @@ export function getVirtualMachinesBegin() {
 
 /**
  * Successfully retrieved virtual machines.
- * @param usage
- * @returns {{type, usage: *}} usage
+ * @param virtualMachines
+ * @returns {{type, virtualMachines: *}} virtualMachines
  */
 export function getVirtualMachinesSuccess(virtualMachines) {
     return {

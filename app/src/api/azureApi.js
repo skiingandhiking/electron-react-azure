@@ -16,6 +16,19 @@ axios.interceptors.response.use(function (response) {
 });
 
 /**
+ * Deallocate a virtual machine
+ * @param subscriptionId
+ * @param resourceGroupName
+ * @param virtualMachineName
+ * @returns {Promise<*>}
+ */
+export function deallocateVirtualMachine(subscriptionId, resourceGroupName, virtualMachineName) {
+    let apiVersion = '2016-04-30-preview';
+    const url = `https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines/${virtualMachineName}/deallocate?api-version=${apiVersion}`;
+    return axios.post(url).then(res=>res.data);
+}
+
+/**
  * Method to authenticate against the Azure restful API.
  * @param tenantId
  * @param clientId
@@ -44,21 +57,6 @@ export function getSubscriptions() {
 }
 
 /**
- * Method to get aggregated usage data from the Azure restful API
- * @param startTime
- * @param endTime
- * @param aggregate
- * @param showDetails
- * @param tenantId
- * @returns {Promise<*>}
- */
-export function getUsage(startTime, endTime, aggregate, showDetails, tenantId) {
-    let apiVersion = '2015-06-01-preview';
-    const url = `https://management.azure.com/subscriptions/${tenantId}/providers/Microsoft.Commerce/UsageAggregates?api-version=${apiVersion}&reportedStartTime=${startTime}&reportedEndTime=${endTime}&aggregationGranularity=${aggregate}&showDetails=${showDetails}`;
-    return axios.get(url).then(res=>res.data);
-}
-
-/**
  * Get virtual machine detail
  * @param subscriptionId
  * @param resourceGroupName
@@ -82,3 +80,28 @@ export function getVirtualMachines(subscriptionId) {
     return axios.get(url).then(res=>res.data);
 }
 
+/**
+ * Start a virtual machine
+ * @param subscriptionId
+ * @param resourceGroupName
+ * @param virtualMachineName
+ * @returns {Promise<*>}
+ */
+export function startVirtualMachine(subscriptionId, resourceGroupName, virtualMachineName) {
+    let apiVersion = '2016-04-30-preview';
+    const url = `https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines/${virtualMachineName}/start?api-version=${apiVersion}`;
+    return axios.post(url).then(res=>res.data);
+}
+
+/**
+ * Stop a virtual machine
+ * @param subscriptionId
+ * @param resourceGroupName
+ * @param virtualMachineName
+ * @returns {Promise<*>}
+ */
+export function stopVirtualMachine(subscriptionId, resourceGroupName, virtualMachineName) {
+    let apiVersion = '2016-04-30-preview';
+    const url = `https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines/${virtualMachineName}/powerOff?api-version=${apiVersion}`;
+    return axios.post(url).then(res=>res.data);
+}

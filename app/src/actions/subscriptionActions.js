@@ -26,8 +26,8 @@ export function getSubscriptionsBegin() {
 
 /**
  * Successfully retrieved subscriptions.
- * @param usage
- * @returns {{type, usage: *}} usage
+ * @param subscriptions
+ * @returns {{type, subscriptions: *}} subscriptions
  */
 export function getSubscriptionsSuccess(subscriptions) {
     return {

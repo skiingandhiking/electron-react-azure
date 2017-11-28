@@ -5,6 +5,7 @@ import * as types from '../constants/azureApiActionTypes';
  * Action to get virtual machine detail.
  * @param subscriptionId
  * @param resourceGroupName
+ * @param virtualMachineName
  * @returns {Promise<*>}
  */
 export function getVirtualMachineDetail(subscriptionId, resourceGroupName, virtualMachineName) {

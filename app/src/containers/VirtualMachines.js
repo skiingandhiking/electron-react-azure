@@ -4,9 +4,9 @@ import SubscriptionsDropdown from '../components/SubscriptionsDropdown';
 import VirtualMachinesList from '../components/VirtualMachinesList';
 import VirtualMachineDetail from '../components/VirtualMachineDetail';
 import { getSubscriptions } from '../actions/subscriptionActions';
-import { getVirtualMachines} from '../actions/virtualMachineActions';
+import { getVirtualMachines} from '../actions/virtualMachinesActions';
 import { getVirtualMachineDetail } from '../actions/virtualMachineDetailsActions';
-
+import { getResourceGroupNameFromId } from "../lib/utilities";
 import './VirtualMachines.css';
 
 class VirtualMachines extends React.Component {
@@ -18,12 +18,11 @@ class VirtualMachines extends React.Component {
             showVirtualMachineDetails: false
         };
     }
-    // Get subscriptions
+
     componentWillMount() {
         this.props.dispatch(getSubscriptions());
     };
 
-    // Set the defaults
     componentDidUpdate(){
         if (this.state.subscription === null && this.props.subscriptions !== null) {
             let subscription = this.props.subscriptions[0];
@@ -31,7 +30,6 @@ class VirtualMachines extends React.Component {
         }
     };
 
-    // Set the current selected subscription
     setSubscription = (subscription) => {
         this.setState({subscription: subscription, resourceGroup: null});
         this.props.dispatch(getVirtualMachines(subscription.subscriptionId));
@@ -39,8 +37,7 @@ class VirtualMachines extends React.Component {
 
     openVirtualMachineDetails = (virtualMachine) => {
         let subscriptionId = this.state.subscription.subscriptionId,
-            idArray = virtualMachine.id.split("/"),
-            resourceName = idArray[4],
+            resourceName = getResourceGroupNameFromId(virtualMachine.id),
             virtualMachineName = virtualMachine.name;
 
         this.setState({showVirtualMachineDetails: true, virtualMachine: virtualMachine});
@@ -75,9 +72,10 @@ class VirtualMachines extends React.Component {
                     />
                 </div>
                     <VirtualMachineDetail
-                        show={this.state.showVirtualMachineDetails}
                         onHide={this.closeVirtualMachineDetails}
-                        vmBasic={this.state.virtualMachine}
+                        show={this.state.showVirtualMachineDetails}
+                        subscriptionId={this.state.subscription ? this.state.subscription.subscriptionId : null}
+                        vm={this.state.virtualMachine}
                         vmDetail={this.props.virtualMachineDetail}
                     />
             </div>

@@ -1,22 +1,51 @@
 import React from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
+import VirtualMachineActionPanel from './VirtualMachineActionPanel';
 
 export default class VirtualMachineDetail extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            vm: null,
+            vmDetail: null
+        };
+    };
 
-    getLatestPowerState = () => {
-        if (this.props.vmDetail && this.props.vmDetail.statuses) {
-            let details = this.props.vmDetail;
-            return details.statuses[details.statuses.length - 1].displayStatus;
+    componentWillReceiveProps(next){
+        if (next.vm) {
+            this.setState({ vm: next.vm});
+        }
+
+        if (next.vmDetail) {
+            this.setState({ vmDetail: next.vmDetail });
         }
     };
 
-    getOperatingSystem = (vmProperties) => {
-        if (vmProperties.storageProfile && vmProperties.storageProfile.osDisk) {
-            return vmProperties.storageProfile.osDisk.osType;
+    getLatestPowerStateDisplay = (detail) => {
+        if (detail && detail.statuses) {
+            return detail.statuses[detail.statuses.length - 1].displayStatus;
+        }
+    };
+
+    getLatestPowerStateCode = (detail) => {
+        if (detail && detail.statuses) {
+            return detail.statuses[detail.statuses.length - 1].code;
+        }
+    };
+
+    getOperatingSystemType = (detail) => {
+        if (detail && detail.storageProfile) {
+            return detail.storageProfile.osDisk.osType;
         }
     };
 
     render() {
+        let vm = this.state.vm,
+            vmDetail = this.state.vmDetail,
+            vmPowerState = this.getLatestPowerStateDisplay(this.state.vmDetail),
+            vmPowerStateCode = this.getLatestPowerStateCode(this.state.vmDetail),
+            vmOsType = this.getOperatingSystemType(this.state.vmDetail);
+
         return(
             <div>
                 <Modal
@@ -24,35 +53,35 @@ export default class VirtualMachineDetail extends React.Component {
                     onHide={this.props.onHide}
                     dialogClassName="custom-modal">
                     <Modal.Header closeButton>
-                        {this.props.vmBasic &&
-                            <Modal.Title id="contained-modal-title-lg">
-                                Details for {this.props.vmBasic.name}
-                            </Modal.Title>
+                        {vm &&
+                            <Modal.Title id="contained-modal-title-lg">Details for {vm.name}</Modal.Title>
                         }
                     </Modal.Header>
                     <Modal.Body>
-                        {this.props.vmBasic &&
+                        {vm &&
                             <div>
-                                <p>Name: {this.props.vmBasic.name}</p>
-                                <p>Location: {this.props.vmBasic.location}</p>
-
-                                {this.props.vmBasic.properties &&
+                                <p>Name: {vm.name}</p>
+                                <p>Location: {vm.location}</p>
+                                {vm.properties &&
                                     <div>
-                                        <p>Provisioning State: {this.props.vmBasic.properties.provisioningState}</p>
-                                        <p>Operating System Type: {this.getOperatingSystem(this.props.vmBasic.properties)}</p>
+                                        <p>Provisioning State: {vm.properties.provisioningState}</p>
+                                        <p>Operating System Type: {vmOsType}</p>
                                     </div>
                                 }
                             </div>
                         }
-                        {this.props.vmDetail &&
+                        {vmDetail &&
                             <div>
-                                <p>Latest Status: {this.getLatestPowerState()}</p>
+                                <p>Latest Status: {vmPowerState}</p>
+                                <VirtualMachineActionPanel
+                                    subscriptionId={this.props.subscriptionId}
+                                    virtualMachine={vm}
+                                    powerStateCode={vmPowerStateCode}
+                                    onHide={this.props.onHide}
+                                />
                             </div>
                         }
                     </Modal.Body>
-                    <Modal.Footer>
-                        <Button onClick={this.props.onHide}>Close</Button>
-                    </Modal.Footer>
                 </Modal>
             </div>
         );
