@@ -1,10 +1,10 @@
-const { app, protocol, BrowserWindow } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-var mainWindow = null;
+let mainWindow = null;
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -29,8 +29,6 @@ app.on('ready', function() {
         slashes: true,
         pathname: path.join(__dirname, 'index.html'),
     }));
-
-    mainWindow.webContents.openDevTools();
 
     if (process.env.ELECTRON_ENV === 'development') {
         // Open the DevTools. 
