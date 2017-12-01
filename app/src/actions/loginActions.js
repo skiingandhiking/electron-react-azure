@@ -1,5 +1,6 @@
 import * as API from '../api/azureApi';
 import * as types from '../constants/azureApiActionTypes';
+import { actionErrorHandler } from '../lib/utilities';
 
 /**
  * Method to authenticate a user against the Azure API.
@@ -45,12 +46,7 @@ export function loginSuccess(token) {
  * @returns {{type, message: string}} response error message
  */
 export function loginFailure(res) {
-    let error = "Unable to connect to the Microsoft Azure API";
-
-    if ((res.response) && (res.response.data) && (res.response.data.error)) {
-        error = res.response.data.error.message;
-    }
-
+    let error = actionErrorHandler(res);
     return {
         type: types.LOGIN_FAILURE,
         message: error

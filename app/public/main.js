@@ -19,8 +19,7 @@ app.on('ready', function() {
         skipTaskbar: true,
         transparent: false,
         type: 'toolbar',
-        icon: __dirname + '/icons/favicon.png',
-        //'web-preferences': {'web-security': false}
+        icon: __dirname + '/icons/favicon.png'
     });
 
     // and load the index.html of the app.

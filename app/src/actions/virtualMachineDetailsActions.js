@@ -1,5 +1,6 @@
 import * as API from '../api/azureApi';
 import * as types from '../constants/azureApiActionTypes';
+import { actionErrorHandler } from '../lib/utilities';
 
 /**
  * Action to get virtual machine detail.
@@ -45,14 +46,9 @@ export function getVirtualMachineDetailSuccess(details) {
  * @returns {{type, message: string}} response error message
  */
 export function getVirtualMachineDetailFailure(res) {
-    let error = "Unable to connect to the Microsoft Azure API";
-
-    if ((res.response) && (res.response.data) && (res.response.data.error)) {
-        error = res.response.data.error.message;
-    }
-
+    let error = actionErrorHandler(res);
     return {
-        type: types.GET_VIRTUAL_MACHINE_DETAIL_FAILURE,
+        type: types.GET_SUBSCRIPTIONS_FAILURE,
         message: error
     };
 }

@@ -1,5 +1,6 @@
 import * as API from '../api/azureApi';
 import * as types from '../constants/azureApiActionTypes';
+import { actionErrorHandler } from '../lib/utilities';
 
 /**
  * Action to get subscriptions.
@@ -42,12 +43,7 @@ export function getSubscriptionsSuccess(subscriptions) {
  * @returns {{type, message: string}} response error message
  */
 export function getSubscriptionsFailure(res) {
-    let error = "Unable to connect to the Microsoft Azure API";
-
-    if ((res.response) && (res.response.data) && (res.response.data.error)) {
-        error = res.response.data.error.message;
-    }
-
+    let error = actionErrorHandler(res);
     return {
         type: types.GET_SUBSCRIPTIONS_FAILURE,
         message: error

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, FormControl, Button } from 'react-bootstrap';
 import { login } from '../actions/loginActions';
+import './Login.css';
 
 class Login extends React.Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class Login extends React.Component {
             <div>
                 <div>
                     <strong>Azure Restful API Credentials</strong>
-                    <p>
+                    <p className="login-description">
                         To successfully connect to the Azure Restful API you must first
                         create an "App Registration" in the Azure portal.
                         Click <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications"
@@ -48,8 +49,10 @@ class Login extends React.Component {
                     </p>
                 </div>
                 <form id="loginForm" name="loginForm" className="login-form">
+                    <div className="login-error">
+                        {this.props.loginError ? this.props.loginErrorMessage: ""}
+                    </div>
                     <div>Azure Active Directory ID</div>
-                    <div className="login-error">{this.props.loginError ? this.props.loginErrorMessage: ""}</div>
                     <FormGroup controlId="azureDirectoryId">
                         <FormControl
                             type="text"

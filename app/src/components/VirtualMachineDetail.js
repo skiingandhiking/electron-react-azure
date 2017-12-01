@@ -33,18 +33,18 @@ export default class VirtualMachineDetail extends React.Component {
         }
     };
 
-    getOperatingSystemType = (detail) => {
-        if (detail && detail.storageProfile) {
-            return detail.storageProfile.osDisk.osType;
+    getOperatingSystemType = (vm) => {
+        if (vm && vm.properties.storageProfile) {
+            return vm.properties.storageProfile.osDisk.osType;
         }
     };
 
     render() {
         let vm = this.state.vm,
             vmDetail = this.state.vmDetail,
-            vmPowerState = this.getLatestPowerStateDisplay(this.state.vmDetail),
-            vmPowerStateCode = this.getLatestPowerStateCode(this.state.vmDetail),
-            vmOsType = this.getOperatingSystemType(this.state.vmDetail);
+            vmPowerState = this.getLatestPowerStateDisplay(vmDetail),
+            vmPowerStateCode = this.getLatestPowerStateCode(vmDetail),
+            vmOsType = this.getOperatingSystemType(vm);
 
         return(
             <div>
