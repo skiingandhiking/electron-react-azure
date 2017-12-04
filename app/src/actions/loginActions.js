@@ -19,7 +19,7 @@ export function login(tenantId, clientId, clientSecret) {
 }
 
 /**
- * Signifies beginning to authenticate.
+ * Begin authenticating against the Azure API.
  * @returns {{type}}
  */
 export function loginBegin() {
@@ -29,9 +29,9 @@ export function loginBegin() {
 }
 
 /**
- * Signifies success to authenticate.
+ * Success authenticating against the Azure API.
  * @param token
- * @returns {{type, token: *}} user object and tokens
+ * @returns {{type, token: *}} user object and token
  */
 export function loginSuccess(token) {
     return {
@@ -41,7 +41,7 @@ export function loginSuccess(token) {
 }
 
 /**
- * Signifies failure to authenticate.
+ * Failure authenticating against the Azure API.
  * @param res
  * @returns {{type, message: string}} response error message
  */
