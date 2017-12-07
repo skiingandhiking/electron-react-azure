@@ -1,5 +1,5 @@
 # electron-react-azure
-Electron desktop application with React.js, Axios, Redux and React Bootstrap that allows you to connect to the Azure resful API and manage ARM-based virtual machines.
+Electron desktop application with React, Axios, Redux and React Bootstrap that allows you to connect to the Azure resful API and manage ARM-based virtual machines.
 
 ### Getting started
 Download or clone the source code:
