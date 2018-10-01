@@ -1,10 +1,5 @@
 # electron-react-azure
-Electron desktop application with React.js, Axios, Redux and React Bootstrap that allows you to connect to the Azure resful API and manage ARM-based virtual machines.
-
-### Tasks
-- [ ] Document login screen fields and how to get the values
-- [ ] Get tests running again
-- [ ] Add virtual machine actions on the details overlay
+Electron-react-azure is an Electron desktop application built with React, Axios, Redux and React Bootstrap that allows you to connect to the Azure resful API and manage ARM-based virtual machines.
 
 ### Getting started
 Download or clone the source code:
@@ -41,4 +36,20 @@ To run just the React application in a browser, cd in to the app folder and run 
 ```
 npm start
 ```
+### Compile and build Electron installers for Windows, MacOS, Linux
+
+1. From the project root directory, cd to the "app" folder
+```
+cd app
+```
+2. Run the following command:
+```
+npm run build
+```
+3. cd to the project root folder and choose the appropriate command depending on what operating system you're on:
+
+If you're on Windows, to compile and build a Windows installer run:
+```
+TBD
+
 
