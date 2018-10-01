@@ -5,4 +5,6 @@ jobs:
       - image: circleci/node:4.8.2
     steps:
       - checkout
-      - run: echo "Testing CircleCi build"
+      - run:
+          name: Install npm for top level
+          command: npm install
